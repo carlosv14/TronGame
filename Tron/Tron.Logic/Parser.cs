@@ -18,7 +18,7 @@ namespace Tron.Logic
 
         private void AddPlayer(string name)
         {
-            _players.Add(new Player(name));
+            _players.Add(new Player(name, (_players.Count==0 ? 0 : 19), (_players.Count==0? 0 : 19)));
         }
 
         private void InstantiatePlayers(List<string> players)

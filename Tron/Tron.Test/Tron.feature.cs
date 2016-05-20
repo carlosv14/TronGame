@@ -125,7 +125,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 20
 this.ScenarioSetup(scenarioInfo);
 #line 21
- testRunner.Given("I have the movement \'Player1:R\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have the movement \'Player1:L\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 22
  testRunner.And("My x position is 0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 23

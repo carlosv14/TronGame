@@ -18,7 +18,7 @@ Scenario: Assing movement to correct player
 		| Player2 |     R    |  
 
 Scenario: Move Player
-	Given I have the movement 'Player1:R'
+	Given I have the movement 'Player1:L'
 	And My x position is 0
 	And My y position is 0
 	When the movement is performed

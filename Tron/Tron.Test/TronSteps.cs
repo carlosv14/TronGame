@@ -65,7 +65,7 @@ namespace Tron.Test
         [Given(@"I have the movement '(.*)'")]
         public void GivenIHaveTheMovement(string p0)
         {
-            ScenarioContext.Current.Pending();
+            
         }
 
         [Given(@"My x position is (.*)")]
