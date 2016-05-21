@@ -12,7 +12,7 @@ namespace Tron.Test
     {
         private IActionsFile _file;
         private string _fileContent;
-        
+        private Game _game;
 
         [Given(@"I have a file named '(.*)'")]
         public void GivenIHaveAFileNamed(string p0)
@@ -33,18 +33,27 @@ namespace Tron.Test
         }
         //*************************************************************
 
-        private Parser _parser;
-        private List<Turn> turns;
-        [Given(@"I read the string '(.*)'")]
-        public void GivenIReadTheString(string p0)
+  
+        private Turn _turn;
+        private string _movement;
+        [Given(@"I read the player '(.*)'")]
+        public void GivenIReadThePlayer(string p0)
         {
-            _parser = new Parser(p0);
+            _game = new Game();
+           _game.AddPlayer(p0, 0);
+            
         }
 
-        [When(@"I parse the movements")]
-        public void WhenIParseTheMovements()
+        [Given(@"I read the movement '(.*)'")]
+        public void GivenIReadTheMovement(string p0)
         {
-            turns = _parser.Parse();
+            _movement = p0;
+        }
+
+        [When(@"I generate the turn")]
+        public void WhenIGenerateTheTurn()
+        {
+            _turn = _game.SetTurn(_movement);
         }
 
         [Then(@"The result will be")]
@@ -52,8 +61,8 @@ namespace Tron.Test
         {
             for (int i = 0; i < table.RowCount; i++)
             {
-                if (table.Rows[i].Values.ToList()[0] != turns[i].Player.Name
-                    || table.Rows[i].Values.ToList()[1] != turns[i].Movement)
+                if (table.Rows[i].Values.ToList()[0] != _turn.Player.Name
+                    || table.Rows[i].Values.ToList()[1] != _turn.Movement)
                 {
                     throw new Exception("Movement parser failed");
                 }    
@@ -61,37 +70,27 @@ namespace Tron.Test
         }
         //***************************************************************************
 
+        private int x;
+        private int y;
+        private string[] coordinateData;
 
-        [Given(@"I have the movement '(.*)'")]
-        public void GivenIHaveTheMovement(string p0)
+        [When(@"my current position is (.*) and the movement is performed")]
+        public void WhenMyCurrentPositionIsAndTheMovementIsPerformed(string p0)
         {
-            
+            coordinateData = p0.Split(' ');
+            x = int.Parse(coordinateData[0]);
+            y = int.Parse(coordinateData[1]);
+            _turn = _game.SetTurn(_movement);
+            _game.Move(_turn);
         }
 
-        [Given(@"My x position is (.*)")]
-        public void GivenMyXPositionIs(int p0)
+        [Then(@"My new position will be (.*)")]
+        public void ThenMyNewPositionWillBe(string p0)
         {
-            ScenarioContext.Current.Pending();
+            coordinateData = p0.Split(' ');
+            string value = _turn.Player.Coordinates.XPosition  + " " + _turn.Player.Coordinates.YPosition;
+            Assert.AreEqual(p0,value);              
         }
-
-        [Given(@"My y position is (.*)")]
-        public void GivenMyYPositionIs(int p0)
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [When(@"the movement is performed")]
-        public void WhenTheMovementIsPerformed()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Then(@"My current position will be")]
-        public void ThenMyCurrentPositionWillBe(Table table)
-        {
-            ScenarioContext.Current.Pending();
-        }
-
 
     }
 }

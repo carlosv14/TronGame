@@ -97,9 +97,11 @@ this.ScenarioSetup(scenarioInfo);
 #line 12
 this.ScenarioSetup(scenarioInfo);
 #line 13
- testRunner.Given("I read the string \'Player1;Player2|Player1:L,Player2:R\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I read the player \'Player1\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 14
- testRunner.When("I parse the movements", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("I read the movement \'Player1:L\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 15
+ testRunner.When("I generate the turn", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "player",
@@ -107,10 +109,7 @@ this.ScenarioSetup(scenarioInfo);
             table1.AddRow(new string[] {
                         "Player1",
                         "L"});
-            table1.AddRow(new string[] {
-                        "Player2",
-                        "R"});
-#line 15
+#line 16
  testRunner.Then("The result will be", ((string)(null)), table1, "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -125,22 +124,33 @@ this.ScenarioSetup(scenarioInfo);
 #line 20
 this.ScenarioSetup(scenarioInfo);
 #line 21
- testRunner.Given("I have the movement \'Player1:L\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I read the player \'Player1\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 22
- testRunner.And("My x position is 0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I read the movement \'Player1:R\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 23
- testRunner.And("My y position is 0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("my current position is 0 0 and the movement is performed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 24
- testRunner.When("the movement is performed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Then("My new position will be 1 0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
-                        "x",
-                        "y"});
-            table2.AddRow(new string[] {
-                        "1",
-                        "0"});
-#line 25
- testRunner.Then("My current position will be", ((string)(null)), table2, "Then ");
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Player Tail Colission")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Tron")]
+        public virtual void PlayerTailColission()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Player Tail Colission", ((string[])(null)));
+#line 26
+this.ScenarioSetup(scenarioInfo);
+#line 27
+ testRunner.Given("the paloma bien grande en mi boca right now", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 28
+ testRunner.And("In mi culo grandota y venosa", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 29
+ testRunner.When("It terminar en mi boca", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 30
+ testRunner.Then("Swallow Forever", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -41,7 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionsFile.cs" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="Coordinates.cs" />
+    <Compile Include="Game.cs" />
     <Compile Include="IActionsFile.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="Player.cs" />

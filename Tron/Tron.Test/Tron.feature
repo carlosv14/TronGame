@@ -10,18 +10,21 @@ Scenario: Read movement file
 	Then contents will be 'Player1;Player2|Player1:L,Player2:R'
 
 Scenario: Assing movement to correct player
-	Given I read the string 'Player1;Player2|Player1:L,Player2:R'
-	When I parse the movements
+	Given I read the player 'Player1'
+	And I read the movement 'Player1:L'
+	When I generate the turn
 	Then The result will be
 		| player  | direction|
 		| Player1 |     L    |
-		| Player2 |     R    |  
 
 Scenario: Move Player
-	Given I have the movement 'Player1:L'
-	And My x position is 0
-	And My y position is 0
-	When the movement is performed
-	Then My current position will be
-		| x | y |
-		| 1 | 0 |
+	Given I read the player 'Player1'
+	And I read the movement 'Player1:R'
+	When my current position is 0 0 and the movement is performed
+	Then My new position will be 1 0
+
+Scenario: Player Tail Colission
+	Given the paloma bien grande en mi boca right now
+	And In mi culo grandota y venosa
+	When It terminar en mi boca
+	Then Swallow Forever

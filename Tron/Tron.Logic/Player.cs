@@ -3,13 +3,12 @@
     public class Player
     {
         public string Name;
-        public int PositionX, PositionY;
+        public Coordinates Coordinates;
 
-        public Player(string name, int positionY, int positionX)
+        public Player(string name, Coordinates coordinates)
         {
             Name = name;
-            PositionY = positionY;
-            PositionX = positionX;
+            Coordinates = coordinates;
         }
     }
 }

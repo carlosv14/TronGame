@@ -1,4 +1,4 @@
-﻿namespace Tron.Test
+﻿namespace Tron.Logic
 {
     public interface IActionsFile
     {

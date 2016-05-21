@@ -1,4 +1,5 @@
 using System.IO;
+using Tron.Logic;
 
 namespace Tron.Test
 {

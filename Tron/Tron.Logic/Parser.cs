@@ -8,51 +8,32 @@ namespace Tron.Logic
 {
     public class Parser
     {
-        private readonly List<Player> _players;
-        private readonly string _fileContent; 
+       
+        private string _fileContent;
+       
         public Parser(string fileContent)
         {
             _fileContent = fileContent;
-            _players = new List<Player>();
+
         }
 
-        private void AddPlayer(string name)
+        public List<string> PlayersFromFile()
         {
-            _players.Add(new Player(name, (_players.Count==0 ? 0 : 19), (_players.Count==0? 0 : 19)));
+            List<string> split  = _fileContent.Split('|').ToList();
+            _fileContent = split[1];
+            List<string> players = split[0].Split(';').ToList();
+            return players;
         }
 
-        private void InstantiatePlayers(List<string> players)
+        public List<string> TurnsFromFile()
         {
-            foreach (var player in players)
-            {
-                AddPlayer(player);
-            }
+            List<string> playerMoves = _fileContent.Split(',').ToList();
+            return playerMoves;
         }
 
-        private Player GetCurrentPlayer(string playerName)
-        {
-            foreach (var player in _players)
-            {
-                if (playerName.Equals(player.Name))
-                    return player;
-            }
-            throw new Exception("Jugador no especificado en archivo");
-        }
-        public List<Turn> Parse()
-        {
-            List<string> players = _fileContent.Split('|').ToList()[0].Split(';').ToList();
-            InstantiatePlayers(players);
-            List<Turn> turns = new List<Turn>();
-            List<string> playerMoves = _fileContent.Split('|').ToList()[1].Split(',').ToList();
 
-            foreach (var elem in playerMoves)
-            {
-                var turnParts = elem.Split(':');
-                turns.Add(new Turn(GetCurrentPlayer(turnParts[0]), turnParts[1]));
-            }
-            return turns;
-
-
-        }
+       
+        //Todo se va a ir a la mierda 9:56 pm
+    
     }
 }
