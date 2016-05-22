@@ -13,9 +13,10 @@ namespace Tron.Logic
         private readonly List<Player> _players;
         private readonly List<Turn> _turns;
         private readonly Parser _parser;
-
+        private readonly Dictionary<string, Delegate> _movement;
         public Game()
         {
+            _movement = new Dictionary<string, Delegate>();
             _playerInitialPosition = new List<Coordinates>
             {
                 new Coordinates(0, 0),
@@ -26,8 +27,16 @@ namespace Tron.Logic
             IActionsFile actionsFile = new ActionsFile("moves.txt");
             _parser = new Parser(actionsFile.Read());
             _players = new List<Player>();
+            InitializeMovements();
         }
-   
+
+        private void InitializeMovements()
+        {
+            _movement["L"]= new Action<Player>(MoveLeft);
+            _movement["R"] = new Action<Player>(MoveRight);
+            _movement["U"] = new Action<Player>(MoveUp);
+            _movement["D"] = new Action<Player>(MoveDown);
+        }
         public void AddPlayer(string name, int playerNumber)
         {
             _players.Add(new Player(name, _playerInitialPosition[playerNumber]));
@@ -75,24 +84,27 @@ namespace Tron.Logic
             }
         }
 
+        public void MoveRight(Player player)
+        {
+            player.Coordinates.XPosition++;
+        }
+        private static void MoveLeft(Player player)
+        {
+            player.Coordinates.XPosition--;
+        }
+
+        private static void MoveUp(Player player)
+        {
+            player.Coordinates.YPosition--;
+        }
+        private static void MoveDown(Player player)
+        {
+            player.Coordinates.YPosition++;
+        }
         public void Move(Turn turn)
         {
             var player = turn.Player;
-            switch (turn.Movement)
-            {
-                case "L":
-                    player.Coordinates.XPosition --;
-                    break;
-                case "R":
-                    player.Coordinates.XPosition++;
-                    break;
-                case "U":
-                    player.Coordinates.YPosition--;
-                    break;
-                case "D":
-                    player.Coordinates.YPosition++;
-                    break;
-            }
+            _movement[turn.Movement].DynamicInvoke(player);
         }
 
     }

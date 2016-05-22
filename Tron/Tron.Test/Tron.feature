@@ -24,7 +24,7 @@ Scenario: Move Player
 	Then My new position will be 1 0
 
 Scenario: Player Tail Colission
-	Given the paloma bien grande en mi boca right now
-	And In mi culo grandota y venosa
-	When It terminar en mi boca
-	Then Swallow Forever
+	Given That 'Player1' has been in the position 2 2
+	And 'Player 2' is or has been in the same positon
+	When the turn has ended
+	Then 'Player 2' loses the game
