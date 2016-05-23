@@ -20,11 +20,13 @@ Scenario: Assing movement to correct player
 Scenario: Move Player
 	Given I read the player 'Player1'
 	And I read the movement 'Player1:R'
-	When my current position is 0 0 and the movement is performed
-	Then My new position will be 1 0
+	When my current position is 1 0 and the movement is performed
+	Then My new position will be 2 0
 
-Scenario: Player Tail Colission
-	Given That 'Player1' has been in the position 2 2
-	And 'Player 2' is or has been in the same positon
+Scenario: Player  Colission
+	Given  I read the player 'Player1'
+	And   he has been in the position 2 2
+	And I read the player 'Player2'
+	And he is or has been in the same positon
 	When the turn has ended
-	Then 'Player 2' loses the game
+	Then 'Player2' loses the game

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TechTalk.SpecFlow;
 using Tron.Logic;
@@ -12,7 +13,7 @@ namespace Tron.Test
     {
         private IActionsFile _file;
         private string _fileContent;
-        private Game _game;
+        private readonly Game _game = new Game();
 
         [Given(@"I have a file named '(.*)'")]
         public void GivenIHaveAFileNamed(string p0)
@@ -36,10 +37,12 @@ namespace Tron.Test
   
         private Turn _turn;
         private string _movement;
+        private string _playerName;
         [Given(@"I read the player '(.*)'")]
         public void GivenIReadThePlayer(string p0)
         {
-            _game = new Game();
+           
+            _playerName = p0;
            _game.AddPlayer(p0, 0);
             
         }
@@ -70,16 +73,19 @@ namespace Tron.Test
         }
         //***************************************************************************
 
-        private int x;
-        private int y;
-        private string[] coordinateData;
-
+        private int _x;
+        private int _y;
+        private string[] _coordinateData;
+        private Player _looser;
         [When(@"my current position is (.*) and the movement is performed")]
         public void WhenMyCurrentPositionIsAndTheMovementIsPerformed(string p0)
         {
-            coordinateData = p0.Split(' ');
-            x = int.Parse(coordinateData[0]);
-            y = int.Parse(coordinateData[1]);
+            _coordinateData = p0.Split(' ');
+            _x = int.Parse(_coordinateData[0]);
+            _y = int.Parse(_coordinateData[1]);
+            var player = _game.GetCurrentPlayer(_playerName);
+            player.Coordinates.XPosition = _x;
+            player.Coordinates.YPosition = _y;
             _turn = _game.SetTurn(_movement);
             _game.Move(_turn);
         }
@@ -87,10 +93,48 @@ namespace Tron.Test
         [Then(@"My new position will be (.*)")]
         public void ThenMyNewPositionWillBe(string p0)
         {
-            coordinateData = p0.Split(' ');
+            _coordinateData = p0.Split(' ');
             string value = _turn.Player.Coordinates.XPosition  + " " + _turn.Player.Coordinates.YPosition;
             Assert.AreEqual(p0,value);              
         }
+
+
+
+
+        [Given(@"he has been in the position (.*)")]
+        public void GivenHeHasBeenInThePosition(string p0)
+        {
+            Player player = _game.GetCurrentPlayer(_playerName);
+            _coordinateData = p0.Split(' ');
+            _x = int.Parse(_coordinateData[0]);
+            _y = int.Parse(_coordinateData[1]);
+            player.AddCoordinateToPath(new Coordinates(_x,_y));
+        }
+
+        [Given(@"he is or has been in the same positon")]
+        public void GivenHeIsOrHasBeenInTheSamePositon()
+        {
+            Player player = _game.GetCurrentPlayer(_playerName);
+            player.AddCoordinateToPath(new Coordinates(_x, _y));
+        }
+
+        [When(@"the turn has ended")]
+        public void WhenTheTurnHasEnded()
+        {
+            _looser = _game.FindLooser(_game.GetCurrentPlayer(_playerName), new Coordinates(_x, _y));
+        }
+
+        [Then(@"'(.*)' loses the game")]
+        public void ThenLosesTheGame(string p0)
+        {
+            Assert.AreEqual(p0,_looser.Name);
+        }
+
+
+
+
+
+
 
     }
 }
