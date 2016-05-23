@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -69,7 +69,7 @@ namespace Tron.Logic
                 if (playerName.Equals(player.Name))
                     return player;
             }
-            throw new Exception("Jugador no especificado en archivo");
+            throw new UnspecifiedPlayerException("Jugador no especificado en archivo");
         }
 
         public void SetTurns()
@@ -142,7 +142,7 @@ namespace Tron.Logic
                 _players.Remove(looser);
             return (_players.Count == 1);
         }
-        public Player FindLooser(Player currentPlayer, Coordinates searchedCoordinates)
+        public Player FindLoser(Player currentPlayer, Coordinates searchedCoordinates)
         {
             foreach (var player in _players)
             {
