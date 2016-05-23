@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using Tron.Test;
 
 namespace Tron.Logic
 {
@@ -11,7 +12,7 @@ namespace Tron.Logic
         private readonly List<Coordinates> _playerInitialPosition;
         private readonly List<Player> _players;
         private readonly List<Turn> _turns;
-        private readonly Parser _parser;
+        private readonly IParser _parser;
         private readonly Dictionary<string, Delegate> _movement;
         public Board Board;
         public Game()
