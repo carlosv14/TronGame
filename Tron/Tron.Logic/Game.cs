@@ -137,7 +137,7 @@ namespace Tron.Logic
 
         public bool EndGame(Player currentPlayer, Coordinates searchedCoordinates)
         {
-            Player looser = FindLooser(currentPlayer, searchedCoordinates);
+            Player looser = FindLoser(currentPlayer, searchedCoordinates);
             if (looser != null)
                 _players.Remove(looser);
             return (_players.Count == 1);
