@@ -30,10 +30,5 @@ namespace Tron.Logic
             List<string> playerMoves = _fileContent.Split(',').ToList();
             return playerMoves;
         }
-
-
-       
-        //Todo se va a ir a la mierda 9:56 pm
-    
     }
 }

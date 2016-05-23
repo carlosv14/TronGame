@@ -133,9 +133,6 @@ namespace Tron.Logic
             Board.AddPiece(coordinate,player.Name);
             Board.PrintBoard();
             Thread.Sleep(1000);
-
-
-
         }
 
         public bool EndGame(Player currentPlayer, Coordinates searchedCoordinates)

@@ -130,11 +130,5 @@ namespace Tron.Test
             Assert.AreEqual(p0,_looser.Name);
         }
 
-
-
-
-
-
-
     }
 }
