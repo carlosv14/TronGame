@@ -1,9 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace Tron.Logic
+namespace Tron.Logic.Exceptions
 {
 	public class UnspecifiedPlayerException : Exception
 	{

@@ -1,5 +1,3 @@
-using System;
-
 namespace Tron.Logic
 {
     public class Coordinates

@@ -60,7 +60,6 @@
       <DependentUpon>Tron.feature</DependentUpon>
     </Compile>
     <Compile Include="TronSteps.cs" />
-    <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

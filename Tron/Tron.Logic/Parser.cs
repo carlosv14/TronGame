@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Tron.Logic.Interfaces;
 
 namespace Tron.Logic
 {
-    public class Parser
+    public class Parser : IParser
     {
        
         private string _fileContent;
