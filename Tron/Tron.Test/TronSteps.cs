@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TechTalk.SpecFlow;
 using Tron.Logic;
@@ -121,7 +119,7 @@ namespace Tron.Test
         [When(@"the turn has ended")]
         public void WhenTheTurnHasEnded()
         {
-            _looser = _game.FindLooser(_game.GetCurrentPlayer(_playerName), new Coordinates(_x, _y));
+            _looser = _game.FindLoser(_game.GetCurrentPlayer(_playerName), new Coordinates(_x, _y));
         }
 
         [Then(@"'(.*)' loses the game")]
