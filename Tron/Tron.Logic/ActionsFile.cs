@@ -1,7 +1,7 @@
 using System.IO;
-using Tron.Logic;
+using Tron.Logic.Interfaces;
 
-namespace Tron.Test
+namespace Tron.Logic
 {
     public class ActionsFile : IActionsFile
     {

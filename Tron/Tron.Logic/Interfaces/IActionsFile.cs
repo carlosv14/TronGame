@@ -1,4 +1,4 @@
-﻿namespace Tron.Logic
+﻿namespace Tron.Logic.Interfaces
 {
     public interface IActionsFile
     {

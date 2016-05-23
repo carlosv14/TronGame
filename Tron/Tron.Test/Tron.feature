@@ -20,11 +20,18 @@ Scenario: Assing movement to correct player
 Scenario: Move Player
 	Given I read the player 'Player1'
 	And I read the movement 'Player1:R'
-	When my current position is 0 0 and the movement is performed
-	Then My new position will be 1 0
+	When my current position is 1 0 and the movement is performed
+	Then My new position will be 2 0
 
-Scenario: Player Tail Colission
-	Given the paloma bien grande en mi boca right now
-	And In mi culo grandota y venosa
-	When It terminar en mi boca
-	Then Swallow Forever
+Scenario: Player  Colission
+	Given  I read the player 'Player1'
+	And   he has been in the position 2 2
+	And I read the player 'Player2'
+	And he is or has been in the same positon
+	When the turn has ended
+	Then 'Player2' loses the game
+
+Scenario:  Player Exception
+	Given I search the player 'Paco'
+	When I get the current Player base on name
+	Then the result will be 'Jugador no especificado en archivo'

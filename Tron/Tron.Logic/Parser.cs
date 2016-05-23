@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Tron.Logic.Interfaces;
 
 namespace Tron.Logic
 {
-    public class Parser
+    public class Parser : IParser
     {
        
         private string _fileContent;
@@ -30,10 +28,5 @@ namespace Tron.Logic
             List<string> playerMoves = _fileContent.Split(',').ToList();
             return playerMoves;
         }
-
-
-       
-        //Todo se va a ir a la mierda 9:56 pm
-    
     }
 }
