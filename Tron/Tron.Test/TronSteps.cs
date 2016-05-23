@@ -129,5 +129,36 @@ namespace Tron.Test
             Assert.AreEqual(p0,_looser.Name);
         }
 
+
+        [Given(@"I search the player '(.*)'")]
+        public void GivenISearchThePlayer(string p0)
+        {
+            _playerName = p0;
+        }
+
+        private string _playerError;
+        [When(@"I get the current Player base on name")]
+        public void WhenIGetTheCurrentPlayerBaseOnName()
+        {
+            var game = new Game();
+            try
+            {
+                
+                game.GetCurrentPlayer(_playerName);
+            }
+            catch (Exception e)
+            {
+                _playerError = e.Message;
+            }
+        }
+
+        [Then(@"the result will be '(.*)'")]
+        public void ThenTheResultWillBe(string p0)
+        {
+            Assert.AreEqual(_playerError, "Jugador no especificado en archivo");
+        }
+
+
+
     }
 }

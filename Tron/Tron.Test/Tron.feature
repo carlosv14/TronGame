@@ -30,3 +30,8 @@ Scenario: Player  Colission
 	And he is or has been in the same positon
 	When the turn has ended
 	Then 'Player2' loses the game
+
+Scenario:  Player Exception
+	Given I search the player 'Paco'
+	When I get the current Player base on name
+	Then the result will be 'Jugador no especificado en archivo'
