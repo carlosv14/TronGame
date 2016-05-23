@@ -35,3 +35,11 @@ Scenario:  Player Exception
 	Given I search the player 'Paco'
 	When I get the current Player base on name
 	Then the result will be 'Jugador no especificado en archivo'
+
+Scenario: Add piece to board
+	Given I have the cordinates 4 and 15
+	And  the piece name 'p1'
+	When I add the piece to the bord
+	Then board in corrdinates will be 'p1'
+
+
