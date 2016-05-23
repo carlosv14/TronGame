@@ -1,6 +1,6 @@
 using System;
 
-namespace Tron.Logic
+namespace Tron.Logic.Exceptions
 {
 	public class UnspecifiedPlayerException : Exception
 	{

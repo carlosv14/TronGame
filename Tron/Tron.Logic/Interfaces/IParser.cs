@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Tron.Logic
+namespace Tron.Logic.Interfaces
 {
     public interface IParser
     {
