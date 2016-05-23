@@ -10,9 +10,21 @@ namespace Tron.Test
     [Binding]
     public class TronSteps
     {
-        private IActionsFile _file;
-        private string _fileContent;
+               
+        private readonly Board _board = new Board();
         private readonly Game _game = new Game();
+        private IActionsFile _file;
+        private Turn _turn;
+        private Player _looser;
+        private Coordinates _coordinates;
+        private string[] _coordinateData;
+        private string _fileContent;
+        private string _movement;
+        private string _playerName;
+        private string _piece;
+        private int _x;
+        private int _y;
+       
 
         [Given(@"I have a file named '(.*)'")]
         public void GivenIHaveAFileNamed(string p0)
@@ -31,12 +43,7 @@ namespace Tron.Test
         {
             Assert.AreEqual(_fileContent, p0);
         }
-        //*************************************************************
 
-  
-        private Turn _turn;
-        private string _movement;
-        private string _playerName;
         [Given(@"I read the player '(.*)'")]
         public void GivenIReadThePlayer(string p0)
         {
@@ -70,12 +77,7 @@ namespace Tron.Test
                 }    
             }
         }
-        //***************************************************************************
 
-        private int _x;
-        private int _y;
-        private string[] _coordinateData;
-        private Player _looser;
         [When(@"my current position is (.*) and the movement is performed")]
         public void WhenMyCurrentPositionIsAndTheMovementIsPerformed(string p0)
         {
@@ -96,9 +98,6 @@ namespace Tron.Test
             string value = _turn.Player.Coordinates.XPosition  + " " + _turn.Player.Coordinates.YPosition;
             Assert.AreEqual(p0,value);              
         }
-
-
-
 
         [Given(@"he has been in the position (.*)")]
         public void GivenHeHasBeenInThePosition(string p0)
@@ -129,7 +128,6 @@ namespace Tron.Test
             Assert.AreEqual(p0,_looser.Name);
         }
 
-
         [Given(@"I search the player '(.*)'")]
         public void GivenISearchThePlayer(string p0)
         {
@@ -140,11 +138,9 @@ namespace Tron.Test
         [When(@"I get the current Player base on name")]
         public void WhenIGetTheCurrentPlayerBaseOnName()
         {
-            var game = new Game();
             try
-            {
-                
-                game.GetCurrentPlayer(_playerName);
+            {              
+                _game.GetCurrentPlayer(_playerName);
             }
             catch (Exception e)
             {
@@ -155,10 +151,34 @@ namespace Tron.Test
         [Then(@"the result will be '(.*)'")]
         public void ThenTheResultWillBe(string p0)
         {
-            Assert.AreEqual(_playerError, "Jugador no especificado en archivo");
+            Assert.AreEqual(_playerError,p0);
         }
 
 
+        [Given(@"I have the cordinates (.*) and (.*)")]
+        public void GivenIHaveTheCordinatesAnd(int p0, int p1)
+        {
+            _coordinates = new Coordinates(p0,p1);
+        }
+
+        [Given(@"the piece name '(.*)'")]
+        public void GivenThePieceName(string p0)
+        {
+            _piece = p0;
+        }
+
+        [When(@"I add the piece to the bord")]
+        public void WhenIAddThePieceToTheBord()
+        {
+
+            _board.AddPiece(_coordinates,_piece);
+        }
+
+        [Then(@"board in corrdinates will be '(.*)'")]
+        public void ThenBoardInCorrdinatesWillBe(string p0)
+        {
+            Assert.AreEqual(p0,_board.GetPiece(_coordinates));
+        }
 
     }
 }

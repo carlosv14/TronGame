@@ -34,6 +34,11 @@ namespace Tron.Logic
             }
         }
 
+        public string GetPiece(Coordinates coordinates)
+        {
+            return _board[coordinates.YPosition, coordinates.XPosition];
+        }
+
         public void AddPiece(Coordinates coordinates, string piece)
         {
             _board[coordinates.YPosition, coordinates.XPosition]
